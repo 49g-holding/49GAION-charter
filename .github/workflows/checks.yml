@@ -1,0 +1,80 @@
+# Checks of this mother repository, on every pull request and on main.
+# cards: the cards in cards/ are exactly what tools/make_cards.py generates from the blueprint,
+#        and they validate against the schemas of 49GAION-protocol on main.
+# no-persian: no Persian or Arabic-script character in any tracked file, the PR title or the PR body.
+# no-org-names: the scanner of 49GAION-protocol finds no organisation name, host or 49-prefixed code.
+name: checks
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the schemas of 49GAION-protocol (main)
+        uses: actions/checkout@v4
+        with:
+          repository: 49g-holding/49GAION-protocol
+          path: .deps/protocol
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml==6.0.2 jsonschema==4.23.0 referencing==0.35.1
+      - name: Generate and check the cards
+        run: python3 tools/make_cards.py .deps/protocol/spec/schemas
+      - name: The committed cards are the generated cards
+        run: git diff --exit-code -- cards
+
+  no-persian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan tracked files, the PR title and the PR body
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          python3 - <<'PY'
+          import os, re, subprocess, sys
+          pat = re.compile('[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]')
+          hits = []
+          for f in subprocess.run(['git', 'ls-files'], capture_output=True, text=True, check=True).stdout.splitlines():
+              try:
+                  text = open(f, encoding='utf-8').read()
+              except (UnicodeDecodeError, IsADirectoryError, FileNotFoundError):
+                  continue
+              hits += [f'{f}:{n}' for n, line in enumerate(text.splitlines(), 1) if pat.search(line)]
+          for name in ('PR_TITLE', 'PR_BODY'):
+              if pat.search(os.environ.get(name, '')):
+                  hits.append(name)
+          for h in hits:
+              print(f'::error::Persian characters: {h}')
+          sys.exit(1 if hits else 0)
+          PY
+
+  no-org-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check out the scanner of 49GAION-protocol (main)
+        uses: actions/checkout@v4
+        with:
+          repository: 49g-holding/49GAION-protocol
+          path: .deps/protocol
+      - name: Scan tracked files
+        run: |
+          hits=$(bash .deps/protocol/.github/scripts/no-org-names.sh | grep -v '^\.deps/' || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::Organisation names, hosts or 49-prefixed codes found (listed above)."
+            exit 1
+          fi
