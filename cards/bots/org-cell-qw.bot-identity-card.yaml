@@ -6,8 +6,8 @@ account:
   id: cred-org-cell-qw
   separate: true
 allowed_actions:
-- raise each Work Item past its waiting time to the owner's accountable seat
-- report items past their time
+- 'run the watchdog''s sweep: remind, raise and repair from the fixed menu'
+- report every repair and every still-stuck item
 ask_first_actions:
 - anything outside its role card
 accountable_human_position: '[ORG]HOAC-TM (top management, [ORG]CELL-TMS)'

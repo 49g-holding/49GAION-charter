@@ -9,7 +9,6 @@ allowed_actions:
 - check installation packages against Annex A
 - prepare approval packets for the human seats
 - dispatch Cells of this AIOC
-- run the code steps of the Input socket
 - collate raises and send briefs
 - report results to [ORG]AIOC-OCO
 ask_first_actions:

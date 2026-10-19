@@ -6,7 +6,8 @@ account:
   id: cred-org-cell-wr
   separate: true
 allowed_actions:
-- route Work Items by the routing data after the receivability check
+- 'run the router''s code step: route Work Items by the routing data after the receivability
+  check'
 - refuse an item that fails the check, with its reason
 - report items with no route to [ORG]AIOC-OCO
 ask_first_actions:

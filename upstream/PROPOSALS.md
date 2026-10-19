@@ -23,4 +23,18 @@
 - **Reason and evidence.** Blueprint §4.2 (SOP step 3) and §12, item 3: the two acts are signed by different seats, and neither text names both.
 - **Parts and tests affected.** Standard §4.4, items 6 and 11; TEST-CH case 19.
 
+## 4. The restart of a stopped Charter
+
+- **Current text.** Standard §4.3, items 4 and 7, and Protocol §4.9, item 1: a stopped unit restarts only by a human decision, signed by the HOAC above it, never by anything under it; human Cells under a stopped part cannot sign its restart.
+- **Proposed text.** Add to Standard §1.7, item 13: "A stop of the whole Charter is lifted as the organisation's constituting documents set, outside the `[ORG]AION`, and recorded in the unit register."
+- **Reason and evidence.** The governing seat's Cell is inside the Charter, and nothing is above it, so no seat can sign the Charter's restart (blueprint §11, item 8; §12, item 4).
+- **Parts and tests affected.** Standard §1.7, item 13; §4.3; Protocol §4.10, item 11 (`hoac_over`).
+
+## 5. Who signs a change of a part of the Charter
+
+- **Current text.** Standard §1.7, item 13: the Charter is installed and changed only on GOV's signature. Protocol §4.10, item 11: `hoac_over` walks `accountable_to`.
+- **Proposed text.** Add to `hoac_over`: "For a change, installation or retirement of a Pod or Cell of the Charter (its parent is the Charter, or a Pod of the Charter), it returns the Cell carrying the unscoped `[ORG]HOAC-GOV`."
+- **Reason and evidence.** The Charter's Pods and Cells are accountable to top management (Protocol §23, item 7), so `hoac_over` alone returns top management for a change that the Standard reserves to GOV (blueprint §11, item 6; §12, item 5).
+- **Parts and tests affected.** Protocol §4.10, item 11; the reference organisations; TEST-CH case 14.
+
 *Powered by 49GAION*

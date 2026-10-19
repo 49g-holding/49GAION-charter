@@ -21,7 +21,6 @@ hoac: '[ORG]HOAC-ACS'
 authority_scope:
   decision_types:
   - use-root-key
-  - restore-or-rollback
   - change-fixed-test-or-threshold
   expires: '2027-10-19'
   authority: delegated
