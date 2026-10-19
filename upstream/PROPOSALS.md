@@ -2,6 +2,8 @@
 
 **`[ORG]AIOC-CH` mother blueprint v0.1.0 · 19 October 2026.** These are drafts only. Nothing here is proposed to 49GAION without the word of its governing seat, and then only by pull request, merged by that seat. Each draft is generalised: no organisation's name or data.
 
+**Status, 19 October 2026.** On the word of the governing seat of 49GAION, all five drafts below were merged as `49GAION/DR-0030` (hub pull request #79; Protocol pull request #51). They are kept here as history.
+
 ## 1. "GOV" in a Cell's code
 
 - **Current text.** Naming Standard R15, item 2: a Cell's code is the initials of the Cell's own name. It gives the example "Top Management Seat" → `[ORG]CELL-TMS`, and none for the governing seat, while the Library has used `[ORG]CELL-GOV` since `v1.5.0` (`49GAION-protocol`: `library/cards/org-aion-top-management.unit-card.json` and the reference organisations).

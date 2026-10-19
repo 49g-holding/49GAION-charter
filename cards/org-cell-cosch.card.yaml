@@ -5,11 +5,11 @@ full_name: Charter Chief of Staff
 parent: '[ORG]AIOC-CH'
 accountable_to: '[ORG]CELL-TMS'
 type: AI Chief of Staff
-card_version: v0.1.0
-version: 0.1.0
+card_version: v0.1.1
+version: 0.1.1
 lineage:
   id: '[ORG]CELL-COSCH'
-  version: 0.1.0
+  version: 0.1.1
   relation: original
 lifecycle_state: designed
 fixed_test:

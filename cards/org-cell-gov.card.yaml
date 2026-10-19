@@ -4,11 +4,11 @@ code: '[ORG]CELL-GOV'
 full_name: Governing Seat
 parent: '[ORG]AIOC-CH'
 type: Human Seat
-card_version: v0.1.0
-version: 0.1.0
+card_version: v0.1.1
+version: 0.1.1
 lineage:
   id: '[ORG]CELL-GOV'
-  version: 0.1.0
+  version: 0.1.1
   relation: original
 lifecycle_state: designed
 fixed_test:
