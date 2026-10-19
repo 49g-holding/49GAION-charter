@@ -12,6 +12,7 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 13 to 36 | the capabilities (blueprint §5) |
 | 37 to 45 | this AIOC's form |
 | 46 to 50 | the converters of the Input socket (blueprint §4.3) |
+| 51 | added at v0.1.1: the restart of the whole Charter (`49GAION/DR-0030`, item 5) |
 
 ## A. The Library cases (TEST-CHARTER v1)
 
@@ -64,7 +65,7 @@ Each case has one pass condition, written before use. Once a case has been used 
 | # | Form | Passes when |
 |---|---|---|
 | 37 | Bots | Every bot of the Charter has `never_signs: true` and its own credential; none has write rights to the gateway's policy, keys or log, the registry or a stream. |
-| 38 | Cards and codes | The committed cards equal the cards generated from §17; every code passes Naming Standard R15, R16 or the exception of blueprint §11, item 2, and the Naming Standard's §5. |
+| 38 | Cards and codes | The committed cards equal the cards generated from §17; every code passes Naming Standard R15 (with its reading note for `[ORG]CELL-GOV`, `49GAION/DR-0030`) or R16, and the Naming Standard's §5. |
 | 39 | Accountable to its own top Cell | The Charter is the only AIOC whose `accountable_to` is a Cell inside it, and that Cell carries the unscoped `[ORG]HOAC-GOV`. |
 | 40 | Chief of Staff | It signs nothing; it puts each complete package to its signer; each raise reaches top management in one line with evidence; a stop never passes through it. |
 | 41 | Gateway Keeper | It cannot change the gateway policy, the map, the engine register or the signature list; a use of a root key with fewer human signers than set is refused. |
@@ -83,11 +84,17 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 49 | Work Item | An item with two owners, no owner, or no acceptance test is refused with the reason. |
 | 50 | installation package and engine entry | A package is checked against Annex A line by line; an engine entry without its ceiling, terms or seats is refused. |
 
+## E. Added at v0.1.1
+
+| # | Rule | Passes when |
+|---|---|---|
+| 51 | The restart of the whole Charter | With the whole Charter stopped, no Cell, Pod or AI of the `[ORG]AION` can lift the stop, the governing seat's Cell included; the stop is lifted only as the organisation's constituting documents set, outside the `[ORG]AION`, and the restart is then recorded in the unit register (`49GAION/DR-0030`, item 5; Standard §1.7, item 13). |
+
 ## The parts' tests
 
 | Test | Part | Owner | Cases |
 |---|---|---|---|
-| TEST-CH-GOV v1 | Governing Seat | `[ORG]CELL-TMS` | 1, 8, 32, 39, 44 |
+| TEST-CH-GOV v1 | Governing Seat | `[ORG]CELL-TMS` | 1, 8, 32, 39, 44, 51 |
 | TEST-CH-TMS v1 | Top Management Seat | `[ORG]CELL-GOV` | 1, 6, 13, 14, 41, 44 |
 | TEST-CH-COSCH v1 | Chief of Staff | `[ORG]CELL-TMS` | 1, 6, 13, 14, 36, 40, 46 to 50 |
 | TEST-CH-CG v1 | Charter Gateway Pod | `[ORG]CELL-TMS` | 3, 9, 10, 15 to 21, 34, 35 |

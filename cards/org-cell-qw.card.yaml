@@ -5,11 +5,11 @@ full_name: Queue Watch
 parent: '[ORG]POD-CW'
 accountable_to: '[ORG]CELL-TMS'
 type: AI Agent
-card_version: v0.1.0
-version: 0.1.0
+card_version: v0.1.1
+version: 0.1.1
 lineage:
   id: '[ORG]CELL-QW'
-  version: 0.1.0
+  version: 0.1.1
   relation: original
 lifecycle_state: designed
 fixed_test:

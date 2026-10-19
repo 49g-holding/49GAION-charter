@@ -23,7 +23,8 @@ cards/bots/, as generated copies. Then it checks:
     initials of its full name (Naming Standard R15: words that start with a lower-case letter
     are skipped, a hyphenated word counts once, a final single capital letter counts); a Cell
     marked code_rule "R16" takes COS and the initials of the AIOC's code (Naming Standard R16,
-    item 2); a Cell with any other code_rule is a recorded exception (blueprint §11), printed;
+    item 2), and must be the Chief of Staff Cell; a Cell marked "R15-GOV" is the Cell carrying the
+    unscoped [ORG]HOAC-GOV, coded GOV (R15, reading note; 49GAION/DR-0030); any other rule fails;
   - versions: the parts block's defaults.card_version equals the §1 card's card_version, its
     defaults.test_version equals the §1 fixed_test.version, and the §1 blueprint_version
     equals the metadata block's.
@@ -224,10 +225,13 @@ def main(schema_dir):
         if rule == "R16":
             if suffix != "COS" + aioc_initials:
                 errors.append(f"{e['code']}: R16: the suffix {suffix} is not COS{aioc_initials}")
-            if e.get("role") != "Chief of Staff":
+            if kind != "CELL" or e.get("role") != "Chief of Staff" or e.get("cell_kind") != "chief-of-staff-cell":
                 errors.append(f"{e['code']}: R16 applies only to a Chief of Staff Cell")
+        elif rule == "R15-GOV":  # Naming Standard R15, reading note (49GAION/DR-0030, item 1)
+            if kind != "CELL" or suffix != "GOV" or e.get("hoac") != "[ORG]HOAC-GOV" or "entity" in (e.get("authority_scope") or {}):
+                errors.append(f"{e['code']}: the R15 reading note applies only to the Cell carrying the unscoped [ORG]HOAC-GOV, coded GOV")
         elif rule != "R15":
-            print(f"EXCEPTION {e['code']}: {rule}")
+            errors.append(f"{e['code']}: unknown code_rule {rule}")
         elif suffix != initials(e["full_name"]):
             errors.append(f"{e['code']}: R15: the suffix {suffix} is not the initials {initials(e['full_name'])} of '{e['full_name']}'")
     named = set(codes) | {aioc.get(k) for k in ("code", "top_cell", "label_holder", "accountable_to")} | set(aioc.get("inner_units", []))

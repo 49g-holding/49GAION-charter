@@ -7,5 +7,6 @@ One `DR-####` file per decided subject, numbered in order. A record file never c
 | Record | Date | Subject | Status |
 |---|---|---|---|
 | [`DR-0001`](DR-0001-the-mother-repository-and-its-first-blueprint.md) | 2026-10-19 | The mother repository of the Charter, and its first mother blueprint | in force on merge |
+| [`DR-0002`](DR-0002-the-readings-of-dr-0030.md) | 2026-10-19 | Charter mother v0.1.1: the readings of 49GAION/DR-0030 | in force on merge |
 
 *Powered by 49GAION*
