@@ -51,6 +51,8 @@ blueprint:
 
 > **Reading (49GAION DR-0041; `decisions/DR-0004`).** The Records and Work Pods are shared services that run as code, like the gateway: holding them is not running the operation, and every record and Work Item stays with the unit that owns it.
 
+> **Reading (49GAION DR-0042; `decisions/DR-0005`).** The gateway and the stop run as code beside the core, outside the reach of every AI, the core's own included; the core's own stop is held by the governance seat. Changes to them count as loosening, and fresh keys are issued at the handover. The live sign-in, the governance seat's own conflict of interest, the authority ceiling and the Chief of Staff are read as `decisions/DR-0005` sets.
+
 ---
 
 ## 0. Identity and lineage

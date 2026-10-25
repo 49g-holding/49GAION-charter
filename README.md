@@ -6,6 +6,8 @@ The mother repository of the Library part **49GAION Charter**. In an `[ORG]AION`
 
 > **Reading (49GAION DR-0041; `decisions/DR-0004`).** The Records and Work Pods are shared services that run as code, like the gateway: holding them is not running the operation, and every record and Work Item stays with the unit that owns it.
 
+> **Reading (49GAION DR-0042; `decisions/DR-0005`).** The gateway and the stop run as code beside the core, outside the reach of every AI, the core's own included; the core's own stop is held by the governance seat. Changes to them count as loosening, and fresh keys are issued at the handover. TEST-CH gains seven cases, five of them must-fail.
+
 ## What the part does
 
 The Charter is the root of every `[ORG]AION`: the one AIOC with no parent, under which every other part is installed (Standard §1.7, item 13). It holds:
