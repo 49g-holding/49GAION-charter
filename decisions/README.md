@@ -10,5 +10,6 @@ One `DR-####` file per decided subject, numbered in order. A record file never c
 | [`DR-0002`](DR-0002-the-readings-of-dr-0030.md) | 2026-10-19 | Charter mother v0.1.1: the readings of 49GAION/DR-0030 | in force on merge |
 | [`DR-0003`](DR-0003-the-readings-of-dr-0041.md) | 2026-10-25 | Charter mother: the readings of 49GAION/DR-0041, the complete definition | in force on merge |
 | [`DR-0004`](DR-0004-the-records-and-work-pods.md) | 2026-10-25 | Charter mother: the Records and Work Pods, read with 49GAION/DR-0041 | in force on merge |
+| [`DR-0005`](DR-0005-the-readings-of-dr-0042.md) | 2026-10-25 | Charter mother: the readings of 49GAION/DR-0042, the clarifications of the complete definition | in force on merge |
 
 *Powered by 49GAION*

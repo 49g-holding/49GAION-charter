@@ -12,5 +12,6 @@
 | Organisation names | `no-org-names` scanner of `49GAION-protocol`, 19 October 2026: **0 hits** |
 | Instances | none yet |
 | Readings | `49GAION/DR-0041`, the complete definition of 49GAION: this repository is read with it (`decisions/DR-0003`), unreleased |
+| Readings (2) | `49GAION/DR-0042`, the clarifications of the complete definition (`decisions/DR-0005`); TEST-CH gains cases 52 to 58, every one `NOT_RUN`; unreleased |
 
 *Powered by 49GAION*
