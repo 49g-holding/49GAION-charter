@@ -49,6 +49,8 @@ blueprint:
 
 > **Reading (49GAION DR-0041).** The complete definition of 49GAION, approved by its governing seat on 25 October 2026, is `49GAION-FRAMEWORK.md` in `github.com/49g-holding/49GAION`. Where this repository differs from it, the definition governs, and this text is read with it. This part is what an organisation's core is made from: the root, at the governance level, holding the governance seat, the organisation's own rules, the governance panel, the gateway and the stop. The Top Management position sits in the Top Management Group, the first AIOC under the core, which is the hub of the operation, human and AI. The readings are in [`decisions/DR-0003`](../decisions/DR-0003-the-readings-of-dr-0041.md). Nothing here is removed.
 
+> **Reading (49GAION DR-0041; `decisions/DR-0004`).** The Records and Work Pods are shared services that run as code, like the gateway: holding them is not running the operation, and every record and Work Item stays with the unit that owns it.
+
 ---
 
 ## 0. Identity and lineage
