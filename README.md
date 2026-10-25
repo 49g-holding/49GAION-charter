@@ -47,4 +47,8 @@ bash <49GAION-protocol>/.github/scripts/no-org-names.sh          # no organisati
 
 The checks also find no Persian or Arabic-script character in any tracked file.
 
+## Owner and licence
+
+- **Owner and licence.** The copyright holder, and the licences of the texts (CC BY 4.0, credit "Powered by 49GAION") and of the code (Apache-2.0), are in [`LICENSE.md`](LICENSE.md).
+
 *Powered by 49GAION*
