@@ -38,6 +38,8 @@ The one-page summary is at the top of the blueprint.
 
 ## Checks
 
+**The Protocol pin.** The checks read `49GAION-protocol` at the commit in `PROTOCOL-PIN` (its schemas and its `no-org-names` scanner), never at `main`, so a change in the Protocol changes nothing here until this repository moves the pin by pull request.
+
 On every pull request and on main (`.github/workflows/checks.yml`):
 
 ```

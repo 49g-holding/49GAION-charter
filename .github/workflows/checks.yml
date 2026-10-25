@@ -1,8 +1,9 @@
 # Checks of this mother repository, on every pull request and on main.
 # cards: the cards in cards/ are exactly what tools/make_cards.py generates from the blueprint,
-#        and they validate against the schemas of 49GAION-protocol on main.
+#        and they validate against the schemas of 49GAION-protocol at the commit in PROTOCOL-PIN.
 # no-persian: no Persian or Arabic-script character in any tracked file, the PR title or the PR body.
-# no-org-names: the scanner of 49GAION-protocol finds no organisation name, host or 49-prefixed code.
+# no-org-names: the scanner of 49GAION-protocol, at the commit in PROTOCOL-PIN, finds no organisation name, host or 49-prefixed code.
+# no-binaries: a binary file is never added; binaries stay outside the repository, cited by link and SHA-256.
 name: checks
 
 on:
@@ -20,10 +21,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check out the schemas of 49GAION-protocol (main)
+      - name: Read the Protocol pin
+        id: pin
+        run: echo "sha=$(tr -d ' \n\r' < PROTOCOL-PIN)" >> "$GITHUB_OUTPUT"
+      - name: Check out the schemas of 49GAION-protocol at the pin
         uses: actions/checkout@v4
         with:
           repository: 49g-holding/49GAION-protocol
+          ref: ${{ steps.pin.outputs.sha }}
           path: .deps/protocol
       - uses: actions/setup-python@v5
         with:
@@ -65,10 +70,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check out the scanner of 49GAION-protocol (main)
+      - name: Read the Protocol pin
+        id: pin
+        run: echo "sha=$(tr -d ' \n\r' < PROTOCOL-PIN)" >> "$GITHUB_OUTPUT"
+      - name: Check out the scanner of 49GAION-protocol at the pin
         uses: actions/checkout@v4
         with:
           repository: 49g-holding/49GAION-protocol
+          ref: ${{ steps.pin.outputs.sha }}
           path: .deps/protocol
       - name: Scan tracked files
         run: |
@@ -78,3 +87,25 @@ jobs:
             echo "::error::Organisation names, hosts or 49-prefixed codes found (listed above)."
             exit 1
           fi
+
+  no-binaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: No binary file is added or changed
+        shell: bash
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then BASE=$(git rev-parse HEAD~1); fi
+          BAD=""
+          while IFS= read -r f; do
+            [ -n "$f" ] && [ -f "$f" ] || continue
+            case "$f" in *.svg) continue;; esac
+            if [ -s "$f" ] && ! python3 -c 'import sys; d=open(sys.argv[1],"rb").read(); sys.exit(1 if b"\0" in d else 0)' "$f" 2>/dev/null; then BAD="$BAD$f"$'\n'; continue; fi
+            if [ -s "$f" ] && ! python3 -c 'import sys; open(sys.argv[1],"rb").read().decode("utf-8")' "$f" 2>/dev/null; then BAD="$BAD$f"$'\n'; fi
+          done < <(git diff --name-only --diff-filter=AM "$BASE"...HEAD)
+          if [ -n "$BAD" ]; then printf '%s' "$BAD"; echo "::error::Binary files added or changed (listed above). Keep them outside the repository, cited by link and SHA-256."; exit 1; fi
+          echo "No binary files added or changed."
