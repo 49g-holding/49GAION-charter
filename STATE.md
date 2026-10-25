@@ -11,5 +11,6 @@
 | Bot identity cards | 6, one for each AI Cell; none signs; no shared credential; **0 errors** |
 | Organisation names | `no-org-names` scanner of `49GAION-protocol`, 19 October 2026: **0 hits** |
 | Instances | none yet |
+| Readings | `49GAION/DR-0041`, the complete definition of 49GAION: this repository is read with it (`decisions/DR-0003`), unreleased |
 
 *Powered by 49GAION*
