@@ -17,6 +17,6 @@ permissions:
 
 jobs:
   checks:
-    uses: 49g-holding/49GAION-protocol/.github/workflows/library-checks.yml@5341f5f567c08065250d164680299926d8b35b9c
+    uses: 49g-holding/49GAION-protocol/.github/workflows/library-checks.yml@8ded5a297e4489ab978256834290a35df7be70a9
     with:
       kind: mother
