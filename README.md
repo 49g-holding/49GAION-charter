@@ -38,7 +38,7 @@ The one-page summary is at the top of the blueprint.
 
 ## Checks
 
-**The Protocol pin.** The checks are the one checks workflow of the Library repositories, `library-checks.yml` of `49GAION-protocol`, called at the commit in `PROTOCOL-PIN`, which also gives the schemas and the `no-org-names` scanner they read, never at `main`, so a change in the Protocol changes nothing here until this repository moves the pin by pull request.
+**The Protocol pin.** The checks are the one set of checks of the Library repositories, the action `library-checks` of `49GAION-protocol`, run at the commit in `PROTOCOL-PIN`, which also gives the schemas and the `no-org-names` scanner they read, never at `main`, so a change in the Protocol changes nothing here until this repository moves the pin by pull request.
 
 On every pull request and on main (`.github/workflows/checks.yml`):
 

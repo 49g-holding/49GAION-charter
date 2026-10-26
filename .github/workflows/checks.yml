@@ -1,8 +1,12 @@
-# Checks of this mother repository, on every pull request and on main: the one checks workflow of
-# the Library repositories, `library-checks.yml` of 49GAION-protocol, called at the commit in
-# PROTOCOL-PIN (the `uses:` line below must name the same commit; the workflow's first job checks it).
-# Jobs: checks / pin, checks / cards, checks / no-persian, checks / no-org-names, checks / no-binaries,
-# checks / dr-frozen. The pin moves by a pull request that changes PROTOCOL-PIN and this line together.
+# Checks of this mother repository, on every pull request and on main: the one set of checks of the
+# Library repositories, the action `library-checks` of 49GAION-protocol, run at the commit in
+# PROTOCOL-PIN (every `uses:` line below must name the same commit; the `pin` check fails if not).
+# cards: the cards in cards/ are exactly what tools/make_cards.py generates from the blueprint, and
+#        validate against the schemas of 49GAION-protocol at the pin.
+# no-persian: no Persian or Arabic-script character in any tracked file, the PR title or the PR body.
+# no-org-names: the scanner of 49GAION-protocol at the pin finds no organisation name, host or code.
+# no-binaries: a binary file is never added. dr-frozen: a decision record on main never changes.
+# The pin moves by a pull request that changes PROTOCOL-PIN and every uses line together.
 name: checks
 
 on:
@@ -16,7 +20,62 @@ permissions:
   contents: read
 
 jobs:
-  checks:
-    uses: 49g-holding/49GAION-protocol/.github/workflows/library-checks.yml@8ded5a297e4489ab978256834290a35df7be70a9
-    with:
-      kind: mother
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: pin
+
+  cards:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: cards
+
+  no-persian:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-persian
+
+  no-org-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-org-names
+
+  no-binaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-binaries
+
+  dr-frozen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: dr-frozen
