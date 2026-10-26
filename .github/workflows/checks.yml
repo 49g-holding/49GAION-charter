@@ -1,9 +1,12 @@
-# Checks of this mother repository, on every pull request and on main.
-# cards: the cards in cards/ are exactly what tools/make_cards.py generates from the blueprint,
-#        and they validate against the schemas of 49GAION-protocol at the commit in PROTOCOL-PIN.
+# Checks of this mother repository, on every pull request and on main: the one set of checks of the
+# Library repositories, the action `library-checks` of 49GAION-protocol, run at the commit in
+# PROTOCOL-PIN (every `uses:` line below must name the same commit; the `pin` check fails if not).
+# cards: the cards in cards/ are exactly what tools/make_cards.py generates from the blueprint, and
+#        validate against the schemas of 49GAION-protocol at the pin.
 # no-persian: no Persian or Arabic-script character in any tracked file, the PR title or the PR body.
-# no-org-names: the scanner of 49GAION-protocol, at the commit in PROTOCOL-PIN, finds no organisation name, host or 49-prefixed code.
-# no-binaries: a binary file is never added; binaries stay outside the repository, cited by link and SHA-256.
+# no-org-names: the scanner of 49GAION-protocol at the pin finds no organisation name, host or code.
+# no-binaries: a binary file is never added. dr-frozen: a decision record on main never changes.
+# The pin moves by a pull request that changes PROTOCOL-PIN and every uses line together.
 name: checks
 
 on:
@@ -17,76 +20,45 @@ permissions:
   contents: read
 
 jobs:
+  pin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: pin
+
   cards:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Read the Protocol pin
-        id: pin
-        run: echo "sha=$(tr -d ' \n\r' < PROTOCOL-PIN)" >> "$GITHUB_OUTPUT"
-      - name: Check out the schemas of 49GAION-protocol at the pin
-        uses: actions/checkout@v4
         with:
-          repository: 49g-holding/49GAION-protocol
-          ref: ${{ steps.pin.outputs.sha }}
-          path: .deps/protocol
-      - uses: actions/setup-python@v5
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
         with:
-          python-version: "3.12"
-      - run: pip install pyyaml==6.0.2 jsonschema==4.23.0 referencing==0.35.1
-      - name: Generate and check the cards
-        run: python3 tools/make_cards.py .deps/protocol/spec/schemas
-      - name: The committed cards are the generated cards
-        run: git diff --exit-code -- cards
+          check: cards
 
   no-persian:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Scan tracked files, the PR title and the PR body
-        env:
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: |
-          python3 - <<'PY'
-          import os, re, subprocess, sys
-          pat = re.compile('[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]')
-          hits = []
-          for f in subprocess.run(['git', 'ls-files'], capture_output=True, text=True, check=True).stdout.splitlines():
-              try:
-                  text = open(f, encoding='utf-8').read()
-              except (UnicodeDecodeError, IsADirectoryError, FileNotFoundError):
-                  continue
-              hits += [f'{f}:{n}' for n, line in enumerate(text.splitlines(), 1) if pat.search(line)]
-          for name in ('PR_TITLE', 'PR_BODY'):
-              if pat.search(os.environ.get(name, '')):
-                  hits.append(name)
-          for h in hits:
-              print(f'::error::Persian characters: {h}')
-          sys.exit(1 if hits else 0)
-          PY
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-persian
 
   no-org-names:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Read the Protocol pin
-        id: pin
-        run: echo "sha=$(tr -d ' \n\r' < PROTOCOL-PIN)" >> "$GITHUB_OUTPUT"
-      - name: Check out the scanner of 49GAION-protocol at the pin
-        uses: actions/checkout@v4
         with:
-          repository: 49g-holding/49GAION-protocol
-          ref: ${{ steps.pin.outputs.sha }}
-          path: .deps/protocol
-      - name: Scan tracked files
-        run: |
-          hits=$(bash .deps/protocol/.github/scripts/no-org-names.sh | grep -v '^\.deps/' || true)
-          if [ -n "$hits" ]; then
-            echo "$hits"
-            echo "::error::Organisation names, hosts or 49-prefixed codes found (listed above)."
-            exit 1
-          fi
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-org-names
 
   no-binaries:
     runs-on: ubuntu-latest
@@ -94,18 +66,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: No binary file is added or changed
-        shell: bash
-        env:
-          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: |
-          if [ -z "$BASE" ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then BASE=$(git rev-parse HEAD~1); fi
-          BAD=""
-          while IFS= read -r f; do
-            [ -n "$f" ] && [ -f "$f" ] || continue
-            case "$f" in *.svg) continue;; esac
-            if [ -s "$f" ] && ! python3 -c 'import sys; d=open(sys.argv[1],"rb").read(); sys.exit(1 if b"\0" in d else 0)' "$f" 2>/dev/null; then BAD="$BAD$f"$'\n'; continue; fi
-            if [ -s "$f" ] && ! python3 -c 'import sys; open(sys.argv[1],"rb").read().decode("utf-8")' "$f" 2>/dev/null; then BAD="$BAD$f"$'\n'; fi
-          done < <(git diff --name-only --diff-filter=AM "$BASE"...HEAD)
-          if [ -n "$BAD" ]; then printf '%s' "$BAD"; echo "::error::Binary files added or changed (listed above). Keep them outside the repository, cited by link and SHA-256."; exit 1; fi
-          echo "No binary files added or changed."
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: no-binaries
+
+  dr-frozen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2a9041d992bfb1b443b5527fca3c066b501baae
+        with:
+          check: dr-frozen
