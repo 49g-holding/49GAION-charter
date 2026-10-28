@@ -8,6 +8,8 @@ The mother repository of the Library part **49GAION Charter**. In an `[ORG]AION`
 
 > **Reading (49GAION DR-0042; `decisions/DR-0005`).** The gateway and the stop run as code beside the core, outside the reach of every AI, the core's own included; the core's own stop is held by the governance seat. Changes to them count as loosening, and fresh keys are issued at the handover. TEST-CH gains seven cases, five of them must-fail.
 
+> **Reading (49GAION DR-0048, DR-0049; `decisions/DR-0006`).** Only AIOCs and HOAC positions: every human place here is a position, and who holds it, and how, is the organisation's own mechanism, outside the system. The acting filler, deputies of human seats and `appoint-acting-filler` are withdrawn.
+
 ## What the part does
 
 The Charter is the root of every `[ORG]AION`: the one AIOC with no parent, under which every other part is installed (Standard §1.7, item 13). It holds:

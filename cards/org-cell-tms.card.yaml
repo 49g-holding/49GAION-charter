@@ -26,7 +26,6 @@ authority_scope:
   - change-parent
   - grant-or-widen-access
   - restart-stopped-unit
-  - appoint-acting-filler
   - change-filler
   - set-or-move-hoac-label
   - widen-ai-budget-or-unattended-action
