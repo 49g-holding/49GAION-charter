@@ -5,11 +5,11 @@ full_name: Gateway Keeper
 parent: '[ORG]POD-CG'
 accountable_to: '[ORG]CELL-TMS'
 type: Human Seat
-card_version: v0.1.1
-version: 0.1.1
+card_version: v0.1.2
+version: 0.1.2
 lineage:
   id: '[ORG]CELL-GK'
-  version: 0.1.1
+  version: 0.1.2
   relation: original
 lifecycle_state: designed
 fixed_test:
