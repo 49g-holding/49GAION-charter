@@ -76,7 +76,7 @@ blueprint:
 | Template | 49GAION AIOC Blueprint Template `v1.6.0` at `acdcbe5` |
 | Mother | 49GAION Charter, part card `v1`. This text is its mother blueprint, held in the part's mother repository `github.com/49g-holding/49GAION-charter` and pinned in the Library register (`49GAION/DR-0024`, `DR-0029`) |
 | Blueprint version and status | `v0.1.1` · draft |
-| Human seats | three HOAC positions: the governing seat (`[ORG]HOAC-GOV`), top management (`[ORG]HOAC-TM`) and the Gateway Keeper (`[ORG]HOAC-ACS`). Who occupies them is top management's own mechanism, and for the governing seat the constituting documents; this AIOC never sees it (Standard §1.1, item 9) |
+| Human seats | three HOAC positions: the governing seat (`[ORG]HOAC-GOV`), top management (`[ORG]HOAC-TM`) and the Gateway Keeper (`[ORG]HOAC-ACS`). Who holds them, and how, is the organisation's own mechanism, outside the system; this AIOC never sees it (Standard §1.1, item 9) |
 | Writing repository | `<org>aioc-ch`, private where it holds the organisation's data. Its companions `-records` and `-records-restricted` hold the Charter's own run records (Naming Standard R9). The shared stores of the Records Pod live in the runtime, never in a repository (§7) |
 | Code project | `<org>aioc-ch`, on the organisation's code platform: the gateway, the registry, the numbering service, the event store, the queue and their tests |
 | Panel | not yet built (§4.4) |
@@ -219,7 +219,7 @@ card:
 
 ### 2.1 Organisation table
 
-The blueprint writes `[ORG]` for the organisation's prefix, as central texts do (Naming Standard R13). Each organisation fills `[ORG]` in its own copy. Positions only; who holds each one is kept only in the private holders register (Standard §1.1, item 9).
+The blueprint writes `[ORG]` for the organisation's prefix, as central texts do (Naming Standard R13). Each organisation fills `[ORG]` in its own copy. Positions only; who holds each one is the organisation's own mechanism, outside the system (Standard §1.1, item 9).
 
 | Term in the blueprint | In `<organisation>` |
 |---|---|
@@ -257,11 +257,11 @@ The blueprint writes `[ORG]` for the organisation's prefix, as central texts do 
 
 ## 3. Positions
 
-| Position (standard title) | Purpose | Reports to | Run today by | Deputy |
+| Position (standard title) | Purpose | Reports to | Run today by | Cover |
 |---|---|---|---|---|
-| Governing seat (HOAC position) | the top of the organisation. It approves and installs the Charter, signs every change to it, signs with top management every change of gateway policy, binds each Human Floor item to a seat, and sets the entities, the retention schedule and who reads the restricted partition | none: its authority comes from the constituting documents | a HOAC position (`[ORG]HOAC-GOV`). Who occupies it is set by the constituting documents and recorded by top management's own mechanism; this AIOC never sees it | as the constituting documents set |
-| Top management (HOAC position) | the human hub. It signs gateway policy with the governing seat; it owns the Charter's fixed test and the tests of its Pods; it receives every raise the Gateway Keeper cannot settle | the governing seat | a HOAC position (`[ORG]HOAC-TM`) | as the governing seat arranges (`appoint-acting-filler`, Standard §4.1, item 12) |
-| Gateway Keeper (HOAC position) | **New.** The human seat of the Gateway Pod, and the `[ORG]HOAC-ACS` of the Charter's own Cells for HF-09. It receives the Gateway Watch's raises about the gateway itself: refusals, holds past their raise time, void calls; it is one of the human signers of each use of a root key (`use-root-key`, HF-15), by the governing seat's delegation and as many as that seat sets; it owns the test of the Gateway Watch. It never changes gateway policy, and never signs for another seat | top management | a HOAC position (`[ORG]HOAC-ACS`) | as top management arranges |
+| Governing seat (HOAC position) | the top of the organisation. It approves and installs the Charter, signs every change to it, signs with top management every change of gateway policy, binds each Human Floor item to a seat, and sets the entities, the retention schedule and who reads the restricted partition | none: its authority comes from the constituting documents | a HOAC position (`[ORG]HOAC-GOV`). Who holds it is the organisation's own mechanism, outside the system, within the constituting documents; this AIOC never sees it | the organisation's own mechanism, outside the system |
+| Top management (HOAC position) | the human hub. It signs gateway policy with the governing seat; it owns the Charter's fixed test and the tests of its Pods; it receives every raise the Gateway Keeper cannot settle | the governing seat | a HOAC position (`[ORG]HOAC-TM`) | the organisation's own mechanism, outside the system |
+| Gateway Keeper (HOAC position) | **New.** The human seat of the Gateway Pod, and the `[ORG]HOAC-ACS` of the Charter's own Cells for HF-09. It receives the Gateway Watch's raises about the gateway itself: refusals, holds past their raise time, void calls; it is one of the human signers of each use of a root key (`use-root-key`, HF-15), by the governing seat's delegation and as many as that seat sets; it owns the test of the Gateway Watch. It never changes gateway policy, and never signs for another seat | top management | a HOAC position (`[ORG]HOAC-ACS`) | the organisation's own mechanism, outside the system |
 | Chief of Staff | the Charter's voice to top management: it collates the raises of the three Pods, prepares signature packets and installation packages for the human seats, and briefs | top management | an agent (`[ORG]CELL-COSCH`) | none; raises are held, never closed |
 | Gateway Watch | reads the gateway log and raises refusals, holds and unclassified actions to the Gateway Keeper | Gateway Keeper | an agent (`[ORG]CELL-GW`) | none; the gateway still gates, fails closed, and the Panel says the watch is down |
 | Registry Steward | prepares, for each part's installation, the registry entries of its record types and the number streams they need, for signature | the Chief of Staff (accountable seat: top management) | an agent (`[ORG]CELL-RS`) | none; the installation waits |
@@ -733,7 +733,7 @@ TEST-CH-WR v1 (TEST-CH v1, cases 5, 30, 31) · result `NOT_RUN`
 | Records that name a person or carry a corporate act's particulars | the restricted partition, by ID (Standard §4.4, item 15) | never in another record, a projection, a mirror, an export, a search or knowledge copy |
 | Installations, changes, retirements, stops and connections | the unit register, append-only | one home |
 | The routing data | kept by `[ORG]AIOC-OCO`, read by the router | one home |
-| The link between positions and the natural persons who occupy them | not in this AIOC: top management's own mechanism (Standard §1.1, item 9) | never here |
+| The link between positions and the natural persons who hold them | not in this AIOC: the organisation's own mechanism, outside the system (Standard §1.1, item 9) | never here |
 | Keys and secrets | the organisation's vault only, each with its custody record (Standard §4.4, item 18) | never written |
 
 ## 8. Tools and the shared AI gateway
@@ -865,7 +865,7 @@ A decision that fills a slot of §15 is taken before the Charter joins: with the
 | ID | Decision | Who decides | Effect while open |
 |---|---|---|---|
 | H-01 | Approve this blueprint `v0.1.1` as the design of `[ORG]AIOC-CH`, and install it (`create-or-install-unit`) | the Cell carrying `[ORG]HOAC-GOV` | it stays a draft; nothing is installed, and no other part can be |
-| H-02 | **Top management's own mechanism.** Arrange the Gateway Keeper position (`[ORG]CELL-GK`) and the positions of §15. Nothing of who occupies them enters this blueprint | the Cell carrying `[ORG]HOAC-TM` | the position is vacant: the gateway's own raises go to top management |
+| H-02 | **The organisation's own mechanism.** Who holds the Gateway Keeper position (`[ORG]CELL-GK`) and the positions of §15, and how, is decided outside the system (`49GAION/DR-0048`, `DR-0049`). Nothing of it enters this blueprint | the organisation's own mechanism, outside the system | the position is empty: the gateway's own raises go to top management |
 | H-03 | **People.** The Human Floor bindings, HF-01 to HF-19, each to a human Cell (`floor_bindings`) | the Cell carrying `[ORG]HOAC-GOV` | every listed type bound to no seat is held |
 | H-04 | The gateway policy and its map from calls to decision types; the loading of the signature list | the Cells carrying `[ORG]HOAC-TM` and `[ORG]HOAC-GOV` (`change-gateway-policy`) | the gateway holds every listed type and refuses every unclassified action |
 | H-05 | The engine register: each engine, its ceiling, its terms and the seats it may serve | the Cells carrying `[ORG]HOAC-TM` and `[ORG]HOAC-GOV` (`change-gateway-policy`) | no engine is bound; no model call runs |
@@ -978,7 +978,7 @@ parts:
       accountable_to: null                  # the only Cell with no accountable_to (Standard §1.7, item 13)
       code_rule: "R15-GOV"                # Naming Standard R15, reading note (49GAION/DR-0030, item 1)
       authority_scope:
-        decision_types: ["create-or-install-unit", "retire-unit", "restore-or-rollback", "change-gateway-policy", "change-org-standard-or-signature-list", "use-root-key", "open-break-glass", "change-assurance-or-audit-line", "set-purpose-or-values", "set-or-move-hoac-label", "delegate-authority", "change-parent", "restart-stopped-unit", "dispose-records-or-data", "appoint-acting-filler", "change-fixed-test-or-threshold"]
+        decision_types: ["create-or-install-unit", "retire-unit", "restore-or-rollback", "change-gateway-policy", "change-org-standard-or-signature-list", "use-root-key", "open-break-glass", "change-assurance-or-audit-line", "set-purpose-or-values", "set-or-move-hoac-label", "delegate-authority", "change-parent", "restart-stopped-unit", "dispose-records-or-data", "change-fixed-test-or-threshold"]
         expires: "2027-10-19"                # placeholder; the constituting documents set it
         authority: "constituted"
       test: { id: "TEST-CH-GOV", cases: "1, 8, 32, 39, 44, 51", owner: "[ORG]CELL-TMS" }
@@ -994,7 +994,7 @@ parts:
       hoac: "[ORG]HOAC-TM"
       accountable_to: "[ORG]CELL-GOV"
       authority_scope:
-        decision_types: ["create-or-install-unit", "retire-unit", "change-gateway-policy", "change-parent", "grant-or-widen-access", "restart-stopped-unit", "appoint-acting-filler", "change-filler", "set-or-move-hoac-label", "widen-ai-budget-or-unattended-action", "change-fixed-test-or-threshold", "use-root-key", "commit-money", "delegate-authority", "dispose-records-or-data"]
+        decision_types: ["create-or-install-unit", "retire-unit", "change-gateway-policy", "change-parent", "grant-or-widen-access", "restart-stopped-unit", "change-filler", "set-or-move-hoac-label", "widen-ai-budget-or-unattended-action", "change-fixed-test-or-threshold", "use-root-key", "commit-money", "delegate-authority", "dispose-records-or-data"]
         expires: "2027-10-19"                # placeholder; the governing seat sets it. Never for a Pod or Cell of the Charter (blueprint §17, Authority)
         authority: "delegated"
       test: { id: "TEST-CH-TMS", cases: "1, 6, 13, 14, 41, 44", owner: "[ORG]CELL-GOV" }

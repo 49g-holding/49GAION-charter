@@ -33,7 +33,6 @@ authority_scope:
   - change-parent
   - restart-stopped-unit
   - dispose-records-or-data
-  - appoint-acting-filler
   - change-fixed-test-or-threshold
   expires: '2027-10-19'
   authority: constituted
