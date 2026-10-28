@@ -5,11 +5,11 @@ full_name: Charter Work
 parent: '[ORG]AIOC-CH'
 accountable_to: '[ORG]CELL-TMS'
 type: AI Pod
-card_version: v0.1.1
-version: 0.1.1
+card_version: v0.1.2
+version: 0.1.2
 lineage:
   id: '[ORG]POD-CW'
-  version: 0.1.1
+  version: 0.1.2
   relation: original
 lifecycle_state: designed
 fixed_test:
