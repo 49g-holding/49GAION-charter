@@ -1,6 +1,6 @@
 # Security
 
-**49GAION Charter, mother blueprint `v0.1.2` · 29 October 2026.**
+**49GAION Charter, mother blueprint `v0.1.3` · 29 October 2026.**
 
 - **No secrets.** No password, key, token, seed phrase or one-time code is ever written here, or kept by the gateway in any log entry. Secrets and keys live only in each organisation's vault, each with its custody record. The credential IDs in `cards/bots/` are placeholders, never credentials.
 - **No log and no organisation's data.** No gateway log entry, record, number or value of any organisation is ever written in this repository or in the 49GAION Library.

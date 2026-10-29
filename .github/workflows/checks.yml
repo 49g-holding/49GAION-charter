@@ -6,6 +6,7 @@
 # no-persian: no Persian or Arabic-script character in any tracked file, the PR title or the PR body.
 # no-org-names: the scanner of 49GAION-protocol at the pin finds no organisation name, host or code.
 # no-binaries: a binary file is never added. dr-frozen: a decision record on main never changes.
+# links: every relative link in a Markdown file resolves (49GAION/DR-0052).
 # The pin moves by a pull request that changes PROTOCOL-PIN and every uses line together.
 name: checks
 
@@ -26,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: pin
 
@@ -36,7 +37,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: cards
 
@@ -46,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: no-persian
 
@@ -56,7 +57,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: no-org-names
 
@@ -66,7 +67,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: no-binaries
 
@@ -76,6 +77,16 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@a2e5f508b0d393277cd44f346cd9fd9e537aa8a5
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
         with:
           check: dr-frozen
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: 49g-holding/49GAION-protocol/.github/actions/library-checks@afc91b670837cd46f2c881b27d1ee5d928aeb907
+        with:
+          check: links

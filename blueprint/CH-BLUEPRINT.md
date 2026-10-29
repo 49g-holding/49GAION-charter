@@ -7,7 +7,7 @@ blueprint:
   organisation: "<organisation>"          # filled in each organisation's own copy
   type: "foundational"
   org_aion: "[ORG]AION"
-  blueprint_version: "v0.1.2"
+  blueprint_version: "v0.1.3"
   status: "draft"
   template:
     name: "49GAION AIOC Blueprint Template"
@@ -25,16 +25,16 @@ blueprint:
     functional: ["Installation and Change", "Tool Gateway", "Human Surface", "Registry and Numbering", "Event Store and Projections", "Daily Check", "Restricted Partition", "Shared Queue and Watchdog", "Routing and Wake"]
 ```
 
-# Blueprint · `[ORG]AIOC-CH` · Charter · `v0.1.2`
+# Blueprint · `[ORG]AIOC-CH` · Charter · `v0.1.3`
 
 **Draft, 19 October 2026. v0.1.1, the same day: the readings of `49GAION/DR-0030` close four exceptions of §11 (`decisions/DR-0002`).** **This is the mother blueprint** of the Library part 49GAION Charter, for any organisation (`49GAION/DR-0029`; `decisions/DR-0001`). It is the part's first blueprint: no instance runs yet, and nothing here has run. Every fixed test reads `NOT_RUN`, by policy: the map is written first. Every rule rests on a 49GAION text, cited by section, or is new in this blueprint and marked **New**. Each organisation fills its own copy (§0, §2.1), and its values never come back here.
 
 > **The Charter in one page**
 >
-> The Charter is the root of every `[ORG]AION`. It is the one AIOC with no parent, and every other part is installed under it (Standard §1.7, item 13). It holds the two highest human seats and the shared services every other part relies on.
+> The Charter is the root of every `[ORG]AION`. It is the one AIOC with no parent, and every other part is installed under it (Standard §1.7, item 13). It holds the governing seat and the shared services every other part relies on. Top management sits in the Top Management Group, the first AIOC under it.
 >
 > **What it holds**
-> - **The governing seat**, the Cell carrying `[ORG]HOAC-GOV`, and **top management**, the Cell carrying `[ORG]HOAC-TM`, with their Offices where the organisation forms them (§4.1).
+> - **The governing seat**, the Cell carrying `[ORG]HOAC-GOV`, with its Office where the organisation forms one (§4.1). **Top management**, the Cell carrying `[ORG]HOAC-TM`, is not held here: it sits in the Top Management Group, the first AIOC under the Charter (the complete definition, §19).
 > - **The Gateway Pod.** The tool gateway: every tool and engine call of every part passes through it. It checks every listed decision type against the signature list, binds each engine from its register, logs every call and fails closed. It serves the live sign-in behind every human port. A stop is never blocked.
 > - **The Records Pod.** One registry of record types, one numbering service, one event store that serves every part's record home, the projections rebuilt from the events with a daily check, and the restricted partition.
 > - **The Work Pod.** One shared queue for every Work Item of every part, with its watchdog; the routing data, which the Operating Core Office keeps; and wake.
@@ -64,7 +64,7 @@ blueprint:
 | Description | "`[ORG]AIOC-CH` is `<organisation>`'s Charter, the root of its `[ORG]AION`, built from 49GAION Charter" |
 | Kind | AIOC |
 | Parent | `none`: the root (Standard §1.7, item 13) |
-| Inner units | `[ORG]CELL-GOV`, `[ORG]CELL-TMS`, `[ORG]CELL-COSCH`, `[ORG]POD-CG`, `[ORG]POD-CR`, `[ORG]POD-CW`: three Pods with their six Cells, and three Cells directly under the AIOC (§17). No inner AIOC |
+| Inner units | `[ORG]CELL-GOV`, `[ORG]CELL-COSCH`, `[ORG]POD-CG`, `[ORG]POD-CR`, `[ORG]POD-CW`: three Pods with their six Cells, and two Cells directly under the AIOC (§17). No inner AIOC |
 | Top Cell | `[ORG]CELL-GOV`, the Cell carrying `[ORG]HOAC-GOV`. It is the only Cell with no `accountable_to`; its authority comes from the organisation's constituting documents (Standard §1.7, item 13) |
 | Accountable to | `[ORG]CELL-GOV`. The Charter is the one AIOC accountable to a Cell inside it (§11) |
 | HOAC label | `[ORG]HOAC-GOV`, held by its top Cell `[ORG]CELL-GOV` (`label_holder`, Standard §4.1, item 10; a Charter carrying the GOV label, as Standard §5.1, item 7 reads) |
@@ -75,8 +75,8 @@ blueprint:
 | Made from | the Library part 49GAION Charter, part card `v1` (DRAFT), and Protocol §23 |
 | Template | 49GAION AIOC Blueprint Template `v1.6.0` at `acdcbe5` |
 | Mother | 49GAION Charter, part card `v1`. This text is its mother blueprint, held in the part's mother repository `github.com/49g-holding/49GAION-charter` and pinned in the Library register (`49GAION/DR-0024`, `DR-0029`) |
-| Blueprint version and status | `v0.1.2` · draft |
-| Human seats | three HOAC positions: the governing seat (`[ORG]HOAC-GOV`), top management (`[ORG]HOAC-TM`) and the Gateway Keeper (`[ORG]HOAC-ACS`). Who holds them, and how, is the organisation's own mechanism, outside the system; this AIOC never sees it (Standard §1.1, item 9) |
+| Blueprint version and status | `v0.1.3` · draft |
+| Human seats | two HOAC positions: the governing seat (`[ORG]HOAC-GOV`) and the Gateway Keeper (`[ORG]HOAC-ACS`). Top management (`[ORG]HOAC-TM`) sits in the Top Management Group, outside the Charter; the Charter names it where top management signs, owns a test, receives a raise or is accountable for a Charter Cell. Who holds them, and how, is the organisation's own mechanism, outside the system; this AIOC never sees it (Standard §1.1, item 9) |
 | Writing repository | `<org>aioc-ch`, private where it holds the organisation's data. Its companions `-records` and `-records-restricted` hold the Charter's own run records (Naming Standard R9). The shared stores of the Records Pod live in the runtime, never in a repository (§7) |
 | Code project | `<org>aioc-ch`, on the organisation's code platform: the gateway, the registry, the numbering service, the event store, the queue and their tests |
 | Panel | not yet built (§4.4) |
@@ -94,10 +94,10 @@ card:
   unit_kind: "AIOC"
   code: "[ORG]AIOC-CH"
   parent: "none"                          # the root (Standard §1.7, item 13)
-  inner_units: ["[ORG]CELL-GOV", "[ORG]CELL-TMS", "[ORG]CELL-COSCH", "[ORG]POD-CG", "[ORG]POD-CR", "[ORG]POD-CW"]
+  inner_units: ["[ORG]CELL-GOV", "[ORG]CELL-COSCH", "[ORG]POD-CG", "[ORG]POD-CR", "[ORG]POD-CW"]
   type: "foundational"
   org_aion: "[ORG]AION"
-  card_version: "v0.1.2"
+  card_version: "v0.1.3"
   input_door: "Chief of Staff"
   wake: { method: "queue", verified: false }
   receives:
@@ -157,17 +157,17 @@ card:
   anatomy:
     panel: { health: { tests: true, metrics: ["stuck", "returned", "late", "calls allowed, refused and held", "unclassified actions raised", "listed types held", "engines bound and served", "numbers issued", "stream gaps and duplicates", "rebuild differences", "acts not attributed", "Work Items by status", "items past their waiting time", "items refused at routing", "parts awake"] } }
     back_office: { converses_with_humans: true, hosts: ["Chief of Staff", "Office"], protocol_traffic: true }
-    definition: { location: "<org>aioc-ch, blueprint/CH-BLUEPRINT.md", version: "v0.1.2" }
+    definition: { location: "<org>aioc-ch, blueprint/CH-BLUEPRINT.md", version: "v0.1.3" }
     delivery: { rollback: "one-click" }
     connectors:
       - { role: "the organisation's vault", connector: "the gateway's key store", access_managed_in: "panel" }   # keys are used only under signatures; no AI Cell holds one
       - { role: "the organisation's sign-in", connector: "the live sign-in behind every HU port", access_managed_in: "panel" }
     gateway: { metering_id: "<per-AIOC metering id>" }
   full_name: "Charter"
-  version: "0.1.2"
+  version: "0.1.3"
   lineage: { id: "[ORG]AIOC-CH", version: "0.1.2", relation: "original" }
   lifecycle_state: "designed"
-  blueprint_version: "v0.1.2"
+  blueprint_version: "v0.1.3"
   template_version: "v1.6.0"
   accountable_to: "[ORG]CELL-GOV"         # the root's own top Cell (§11)
   top_cell: "[ORG]CELL-GOV"
@@ -225,7 +225,8 @@ The blueprint writes `[ORG]` for the organisation's prefix, as central texts do 
 |---|---|
 | `[ORG]AION` | `<filled by the organisation>` |
 | The governing seat, the Cell carrying `[ORG]HOAC-GOV` | `<code>`; the cards use the example code `[ORG]CELL-GOV`. Its authority comes from the organisation's constituting documents |
-| Top management, the Cell carrying `[ORG]HOAC-TM` | `<code>`; the cards use the example code `[ORG]CELL-TMS` |
+| Top management, the Cell carrying `[ORG]HOAC-TM` | `<code>`, a Cell of the Top Management Group, outside the Charter; the cards use the example code `[ORG]CELL-TMS` |
+| The Top Management Group | the organisation's own AIOC code; the first AIOC under the Charter (the complete definition, §19). Its name is plain English and takes no code of its own (Naming Standard, §3); this blueprint names it in words |
 | `[ORG]AIOC-OCO` | `<filled>`, the Operating Core Office: it prepares the Charter and every installation under it, and keeps the routing data |
 | The entities | `<filled>`: each legal entity of the organisation (`entities`, §15) |
 | The organisation's vault | `<filled>`, the one home of every secret; the gateway's keys live there |
@@ -236,15 +237,16 @@ The blueprint writes `[ORG]` for the organisation's prefix, as central texts do 
 ### 2.2 Placement
 
 - **Where it sits.** At the root. Every other AIOC of the `[ORG]AION` has a parent under it.
-- **Its role.** It holds the organisation's two highest seats and the services every part shares, so that there is one gateway, one numbering service and one shared queue.
+- **Its role.** It holds the organisation's governing seat and the services every part shares, so that there is one gateway, one numbering service and one shared queue. Top management sits in the Top Management Group, the first AIOC under it.
 - **Scope.**
-  - **It does:** hold the Cells that carry `[ORG]HOAC-GOV` and `[ORG]HOAC-TM`; take the governing seat's signature for its own installation and change, and for each part's installation under it; run every tool and engine call through the gateway, checking signatures and binding engines; serve the live sign-in behind every human port; keep the registry, issue every readable number, store every part's events, rebuild projections and check them daily; hold the restricted partition; keep every Work Item in one queue, watch waiting times, route items and wake parts.
+  - **It does:** hold the Cell that carries `[ORG]HOAC-GOV`; take the governing seat's signature for its own installation and change, and for each part's installation under it; run every tool and engine call through the gateway, checking signatures and binding engines; serve the live sign-in behind every human port; keep the registry, issue every readable number, store every part's events, rebuild projections and check them daily; hold the restricted partition; keep every Work Item in one queue, watch waiting times, route items and wake parts.
   - **It does not:** decide what work is done; give an order; sign for a seat; let an AI Cell write the gateway's policy, keys or log, the registry or a number stream; hold the content of any part's work beyond its records; record a person's activity; hold a secret outside the vault.
 - **Boundaries with other parts.**
 
   | Part | The Charter does | It never |
   |---|---|---|
   | `[ORG]AIOC-OCO` (Standard §5.3) | receives from it every installation package and blueprint change, for the governing seat's signature; reads the routing data it keeps | lets it install, change or maintain the Charter or the gateway alone (Standard §1.7, item 13; §4.4, item 11) |
+  | The Top Management Group (the complete definition, §19) | takes the signatures of the Cell carrying `[ORG]HOAC-TM` at the gateway, under live sign-in, and sends that Cell the raises and briefs this blueprint names (`decisions/DR-0003`, item 4) | holds that Cell, or lets the Group install or change the Charter alone (Standard §1.7, item 13) |
   | Every other AIOC | runs its calls, issues its numbers, stores its events, keeps its Work Items, wakes it | writes its records or Work Items for it, or steps into the content of its work |
   | Engine Room (`49GAION/DR-0026`) | binds the engines it supplies, from the engine register | lets it become a second path around the gateway |
   | Operations Event Register (Protocol §22) | gives it the numbering service, the gateway log's hand-offs and segment roots, read only, and the queue's events | lets it gate, or puts the register on the accountability path |
@@ -260,7 +262,7 @@ The blueprint writes `[ORG]` for the organisation's prefix, as central texts do 
 | Position (standard title) | Purpose | Reports to | Run today by | Cover |
 |---|---|---|---|---|
 | Governing seat (HOAC position) | the top of the organisation. It approves and installs the Charter, signs every change to it, signs with top management every change of gateway policy, binds each Human Floor item to a seat, and sets the entities, the retention schedule and who reads the restricted partition | none: its authority comes from the constituting documents | a HOAC position (`[ORG]HOAC-GOV`). Who holds it is the organisation's own mechanism, outside the system, within the constituting documents; this AIOC never sees it | the organisation's own mechanism, outside the system |
-| Top management (HOAC position) | the human hub. It signs gateway policy with the governing seat; it owns the Charter's fixed test and the tests of its Pods; it receives every raise the Gateway Keeper cannot settle | the governing seat | a HOAC position (`[ORG]HOAC-TM`) | the organisation's own mechanism, outside the system |
+| Top management (HOAC position, outside the Charter) | the human hub. Its Cell sits in the Top Management Group, the first AIOC under the Charter; it is named here for what it does toward the Charter. It signs gateway policy with the governing seat; it owns the Charter's fixed test and the tests of its Pods; it receives every raise the Gateway Keeper cannot settle | the governing seat | a HOAC position (`[ORG]HOAC-TM`) | the organisation's own mechanism, outside the system |
 | Gateway Keeper (HOAC position) | **New.** The human seat of the Gateway Pod, and the `[ORG]HOAC-ACS` of the Charter's own Cells for HF-09. It receives the Gateway Watch's raises about the gateway itself: refusals, holds past their raise time, void calls; it is one of the human signers of each use of a root key (`use-root-key`, HF-15), by the governing seat's delegation and as many as that seat sets; it owns the test of the Gateway Watch. It never changes gateway policy, and never signs for another seat | top management | a HOAC position (`[ORG]HOAC-ACS`) | the organisation's own mechanism, outside the system |
 | Chief of Staff | the Charter's voice to top management: it collates the raises of the three Pods, prepares signature packets and installation packages for the human seats, and briefs | top management | an agent (`[ORG]CELL-COSCH`) | none; raises are held, never closed |
 | Gateway Watch | reads the gateway log and raises refusals, holds and unclassified actions to the Gateway Keeper | Gateway Keeper | an agent (`[ORG]CELL-GW`) | none; the gateway still gates, fails closed, and the Panel says the watch is down |
@@ -269,7 +271,7 @@ The blueprint writes `[ORG]` for the organisation's prefix, as central texts do 
 | Queue Watch | runs the watchdog's sweep (code, no model) and reports what it repaired and what is still stuck (Protocol §4.6) | the Chief of Staff (accountable seat: top management) | an agent (`[ORG]CELL-QW`) | none; items keep their status, and the Panel says the watch is down |
 | Work Router | runs the router's code step: routes each Work Item by the routing data, after the receivability check | the Chief of Staff (accountable seat: top management) | an agent (`[ORG]CELL-WR`) | none; items wait unrouted, and are shown |
 
-- **Every human position is a HOAC position.** The Charter has three: the governing seat, top management and the Gateway Keeper. No AI Cell ever holds one.
+- **Every human position is a HOAC position.** The Charter has two: the governing seat and the Gateway Keeper. Top management, the third in this table, sits in the Top Management Group. No AI Cell ever holds one.
 - **No natural person** (Standard §1.1, item 9). This blueprint deals with positions only.
 - **No AI holds the keys** (Protocol §23, item 7). The gateway, the registry, the numbering service, the event store and the queue are code, run by the Charter's runtime. Code is a tool, never a seat. The AI Cells read, route and raise; no AI Cell has write rights to the gateway's policy, keys or log, to the registry or to a number stream.
 - **No model in the path of a call, a number or a stop.** The gateway's decision, the issue of a number, the routing check and a stop are code. A model is used only by the Chief of Staff and the Watch Cells, to write a raise or a brief, within the budget cap.
@@ -284,7 +286,7 @@ Defaults are in `docs/STANDARD-CAPABILITIES.md` of `49GAION-aioc` at `acdcbe5` (
 #### Definition
 Default · form: **single Chief of Staff** for the Charter. An Office forms only when top management needs more than one Chief of Staff for the Charter; it is proposed to top management, never self-created. A second Chief of Staff takes the code `[ORG]CELL-COSCH2` (Naming Standard R16, item 3).
 
-**The Offices of the governing seat and of top management** (Standard §1.7, item 13; §5.2) are held in the Charter. Where the organisation forms one, each is installed in the Charter as its own Cells, attached to that seat, prepared by OCO and installed on the governing seat's signature as a change of the Charter. None is designed in this mother; each organisation adds its own.
+**The Office of the governing seat** (Standard §1.7, item 13; §5.2) is held in the Charter. Where the organisation forms one, it is installed in the Charter as its own Cells, attached to that seat, prepared by OCO and installed on the governing seat's signature as a change of the Charter. None is designed in this mother; each organisation adds its own. Top management's Office sits with top management in the Top Management Group, outside this blueprint.
 #### Process (SOP)
 Default.
 #### Role card
@@ -855,6 +857,8 @@ One dated line per lesson, each written without any organisation's details. The 
 3. 2026-10-19 · An addition to an organisation's signature list is `change-org-standard-or-signature-list`, and loading it at the gateway is `change-gateway-policy`: two acts, by different seats. Test question added: case 19. Proposed to the mother as a draft: one sentence in Standard §4.4, item 11, naming both. Merged as `49GAION/DR-0030`, item 3, on 19 October 2026.
 4. 2026-10-19 · No seat can sign the restart of a stopped Charter: the governing seat's Cell is inside it, and nothing is above it. Test question added at v0.1.1: case 51. Proposed to the mother as a draft: the restart of a stopped Charter is signed as the organisation's constituting documents set, outside the `[ORG]AION`. Merged as `49GAION/DR-0030`, item 5, on 19 October 2026.
 5. 2026-10-19 · `hoac_over` follows `accountable_to`, so for a Pod or Cell of the Charter it returns top management, while Standard §1.7, item 13 has the governing seat sign every change of the Charter. Test question added: case 14. Proposed to the mother as a draft: `hoac_over` returns the governing seat's Cell for a change of a Pod or Cell of the Charter. Merged as `49GAION/DR-0030`, item 4, on 19 October 2026.
+6. 2026-10-29 · The Library's TEST-CHARTER v1, case 2, and its description of the part said the Charter holds the TM Cell, which sits in the Top Management Group; `49GAION-protocol` corrects both by `49GAION/DR-0052`, and case 2 is kept here as the Library now words it (`tests/TEST-CH.md`).
+7. 2026-10-29 · Open: to whom the core's Pods and AI Cells are accountable, now that top management sits outside the core. Until a later version decides, they stay accountable to the Cell carrying `[ORG]HOAC-TM`.
 
 ## 13. For the `[ORG]HOAC-ACS` seat, and every decision only a human seat can take
 
@@ -864,7 +868,7 @@ A decision that fills a slot of §15 is taken before the Charter joins: with the
 
 | ID | Decision | Who decides | Effect while open |
 |---|---|---|---|
-| H-01 | Approve this blueprint `v0.1.2` as the design of `[ORG]AIOC-CH`, and install it (`create-or-install-unit`) | the Cell carrying `[ORG]HOAC-GOV` | it stays a draft; nothing is installed, and no other part can be |
+| H-01 | Approve this blueprint `v0.1.3` as the design of `[ORG]AIOC-CH`, and install it (`create-or-install-unit`) | the Cell carrying `[ORG]HOAC-GOV` | it stays a draft; nothing is installed, and no other part can be |
 | H-02 | **The organisation's own mechanism.** Who holds the Gateway Keeper position (`[ORG]CELL-GK`) and the positions of §15, and how, is decided outside the system (`49GAION/DR-0048`, `DR-0049`). Nothing of it enters this blueprint | the organisation's own mechanism, outside the system | the position is empty: the gateway's own raises go to top management |
 | H-03 | **People.** The Human Floor bindings, HF-01 to HF-19, each to a human Cell (`floor_bindings`) | the Cell carrying `[ORG]HOAC-GOV` | every listed type bound to no seat is held |
 | H-04 | The gateway policy and its map from calls to decision types; the loading of the signature list | the Cells carrying `[ORG]HOAC-TM` and `[ORG]HOAC-GOV` (`change-gateway-policy`) | the gateway holds every listed type and refuses every unclassified action |
@@ -888,6 +892,7 @@ A decision that fills a slot of §15 is taken before the Charter joins: with the
 | v0.1.0 | 2026-10-19 | First mother blueprint of `[ORG]AIOC-CH` on the template, from the Library part 49GAION Charter v1 and Protocol §23 (`49GAION/DR-0029`): nine functional capabilities; nine Cells, six in three Pods (Gateway, Records, Work) and three directly under the AIOC; three HOAC positions; the Chief of Staff coded under Naming Standard R16 (`49GAION/DR-0028`); TEST-CH v1, 50 cases, with the Library's TEST-CHARTER v1 kept | v1.6.0 at `acdcbe5` | this repository, pull request #1 |
 | v0.1.1 | 2026-10-19 | The readings of `49GAION/DR-0030` (`decisions/DR-0002`): §11 items 2, 3, 6 and 8 are settled and no longer exceptions; the code `[ORG]CELL-GOV` is read under the reading note to Naming Standard R15; case 51 tests the restart of the whole Charter; `tools/make_cards.py` checks that a Cell marked R16 is the Chief of Staff Cell | v1.6.0 at `acdcbe5` | this repository's pull request for this version |
 | v0.1.2 | 2026-10-29 | Released on the governing seat's word (`decisions/DR-0007`): it carries the records since v0.1.1, `decisions/DR-0003`, `decisions/DR-0004`, `decisions/DR-0005`, `decisions/DR-0006`; positions only (`49GAION/DR-0048`, `DR-0049`). Every card takes v0.1.2; the Protocol pin moves to the Operating Protocol `v2.1.0`. No other rule changes. |
+| v0.1.3 | 2026-10-29 | Corrections under `49GAION/DR-0052` (`decisions/DR-0008`): top management sits in the Top Management Group, the first AIOC under the core, not in the Charter, which names it where it signs, owns a test or receives a raise; its card leaves the Charter (the complete definition, §19); the Chief of Staff signs nothing in its own name, and for a position only within that position's grant (`49GAION/DR-0053`, item 11). Every card takes v0.1.3. The Protocol pin moves to the Operating Protocol `v2.2.0`. No rule of this part is added or dropped. |
 
 ---
 
@@ -943,7 +948,6 @@ The parts inside this AIOC (`docs/CELLS-AND-PODS.md` of `49GAION-aioc`). The rol
 | Code | Kind | Type | Filler kind | HOAC label | Parent | Attached to | Fixed test (owner) | External ports |
 |---|---|---|---|---|---|---|---|---|
 | `[ORG]CELL-GOV` | CELL | Human Seat | human | `[ORG]HOAC-GOV` | `[ORG]AIOC-CH` | none | TEST-CH-GOV v1 (`[ORG]CELL-TMS`) | none |
-| `[ORG]CELL-TMS` | CELL | Human Seat | human | `[ORG]HOAC-TM` | `[ORG]AIOC-CH` | none | TEST-CH-TMS v1 (`[ORG]CELL-GOV`) | none |
 | `[ORG]CELL-COSCH` | CELL | AI Chief of Staff | ai | none | `[ORG]AIOC-CH` | none | TEST-CH-COSCH v1 (`[ORG]CELL-TMS`) | none |
 | `[ORG]POD-CG` | POD | Human-led Pod | — | none | `[ORG]AIOC-CH` | — | TEST-CH-CG v1 (`[ORG]CELL-TMS`) | — |
 | `[ORG]CELL-GK` | CELL | Human Seat | human | `[ORG]HOAC-ACS` | `[ORG]POD-CG` | none | TEST-CH-GK v1 (`[ORG]CELL-TMS`) | none |
@@ -955,14 +959,14 @@ The parts inside this AIOC (`docs/CELLS-AND-PODS.md` of `49GAION-aioc`). The rol
 | `[ORG]CELL-WR` | CELL | AI Agent | ai | none | `[ORG]POD-CW` | none | TEST-CH-WR v1 (`[ORG]CELL-TMS`) | none |
 | `[ORG]CELL-QW` | CELL | AI Agent | ai | none | `[ORG]POD-CW` | none | TEST-CH-QW v1 (`[ORG]CELL-TMS`) | none |
 
-**The card data (the blueprint governs).** The block below holds every value of every Pod and Cell card and of the bot identity card of every AI Cell. `tools/make_cards.py` expands it into the complete forms of the template and of `spec/schemas/unit-card.schema.json` and `bot-identity-card.schema.json` of `49GAION-protocol`, writes them into `cards/` as generated copies, and checks them against the schemas, the code rules of `tests/cards/check_cards.py` of `49GAION-protocol`, and this blueprint.
+**The card data (the blueprint governs).** The block below holds every value of every Pod and Cell card and of the bot identity card of every AI Cell. `tools/make_cards.py` expands it into the complete forms of the template and of `spec/schemas/unit-card.schema.json` and `bot-identity-card.schema.json` of `49GAION-protocol`, writes them into `cards/` as generated copies, and checks them against the schemas, the code rules of `tests/cards/check_cards.py` of `49GAION-protocol`, and this blueprint. Its `outside_positions` lists the positions outside the Charter that the cards name as `accountable_to` or as a test's owner; each carries a HOAC label and gets no card here.
 
 ```yaml
 parts:
   defaults:
     accountable_to: "[ORG]CELL-TMS"
-    card_version: "v0.1.2"
-    version: "0.1.2"
+    card_version: "v0.1.3"
+    version: "0.1.3"
     lifecycle_state: "designed"
     test_version: "v1"
     test_owner: "[ORG]CELL-TMS"
@@ -987,22 +991,6 @@ parts:
       ai_out: ["direction"]
       hu_in: ["direction under the constituting documents"]
       hu_out: ["the installation of the Charter and every change to it, signed at the tool gateway", "gateway policy, with top management", "floor bindings, entities, retention and restricted readers"]
-    - code: "[ORG]CELL-TMS"
-      full_name: "Top Management Seat"
-      parent: "[ORG]AIOC-CH"
-      type: "Human Seat"
-      filler_kind: "human"
-      hoac: "[ORG]HOAC-TM"
-      accountable_to: "[ORG]CELL-GOV"
-      authority_scope:
-        decision_types: ["create-or-install-unit", "retire-unit", "change-gateway-policy", "change-parent", "grant-or-widen-access", "restart-stopped-unit", "change-filler", "set-or-move-hoac-label", "widen-ai-budget-or-unattended-action", "change-fixed-test-or-threshold", "use-root-key", "commit-money", "delegate-authority", "dispose-records-or-data"]
-        expires: "2027-10-19"                # placeholder; the governing seat sets it. Never for a Pod or Cell of the Charter (blueprint §17, Authority)
-        authority: "delegated"
-      test: { id: "TEST-CH-TMS", cases: "1, 6, 13, 14, 41, 44", owner: "[ORG]CELL-GOV" }
-      ai_in: ["approval packet from the Chief of Staff", "brief", "raise"]
-      ai_out: ["direction and configuration"]
-      hu_in: ["direction from the governing seat", "raise from the Gateway Keeper"]
-      hu_out: ["installations of parts, signed at the tool gateway", "gateway policy, with the governing seat", "report to the governing seat"]
     - code: "[ORG]CELL-COSCH"
       full_name: "Charter Chief of Staff"
       role: "Chief of Staff"
@@ -1059,10 +1047,12 @@ parts:
     - { code: "[ORG]POD-CG", full_name: "Charter Gateway", type: "Human-led Pod", inner_units: ["[ORG]CELL-GK", "[ORG]CELL-GW"], top_cell: "[ORG]CELL-GK", test: { id: "TEST-CH-CG", cases: "3, 9, 10, 15 to 21, 34, 35" }, ai_in: ["tool and engine calls", "signature records", "stops"], ai_out: ["call decisions", "log entries", "raises"] }
     - { code: "[ORG]POD-CR", full_name: "Charter Records", type: "AI Pod", inner_units: ["[ORG]CELL-RS", "[ORG]CELL-RW"], top_cell: "[ORG]CELL-RS", test: { id: "TEST-CH-CR", cases: "4, 22 to 27, 33" }, ai_in: ["record writes", "number requests", "registry entries"], ai_out: ["events", "numbers", "projections", "findings"] }
     - { code: "[ORG]POD-CW", full_name: "Charter Work", type: "AI Pod", inner_units: ["[ORG]CELL-WR", "[ORG]CELL-QW"], top_cell: "[ORG]CELL-WR", test: { id: "TEST-CH-CW", cases: "5, 28 to 31" }, ai_in: ["Work Items", "queue events"], ai_out: ["routed Work Items", "watchdog raises", "wake signals"] }
+  outside_positions:                        # positions outside the Charter that it names; no card here (49GAION/DR-0052)
+    - { code: "[ORG]CELL-TMS", hoac: "[ORG]HOAC-TM", sits_in: "the Top Management Group, the first AIOC under the Charter" }   # top management
 ```
 
-- **Accountability.** The Charter is accountable to the governing seat's Cell, and that Cell to no one: its authority comes from the constituting documents. Top management is accountable to the governing seat. Every Pod and every other Cell is accountable to top management (Protocol §23, item 7), except the Gateway Watch, which is accountable to the Gateway Keeper.
-- **Authority.** The `authority_scope` of each human Cell lists the listed types it signs. The expiry dates are placeholders. The decisions of §13 that belong to other positions are never signed for them. Every installation, change or retirement of a Pod or Cell of the Charter is a change of the Charter, and is signed by the Cell carrying `[ORG]HOAC-GOV` (Standard §1.7, item 13; Protocol §23, item 7), although those parts are accountable to top management; top management's scope covers the parts outside the Charter. This is now Standard §1.7, item 13 and Protocol §4.10, item 11 (`49GAION/DR-0030`, item 4).
+- **Accountability.** The Charter is accountable to the governing seat's Cell, and that Cell to no one: its authority comes from the constituting documents. Top management, outside the Charter in the Top Management Group, is accountable to the governing seat. Every Pod and every other Cell is accountable to top management (Protocol §23, item 7), except the Gateway Watch, which is accountable to the Gateway Keeper.
+- **Authority.** The `authority_scope` of each human Cell lists the listed types it signs; top management's is on its own card, in the Top Management Group. The expiry dates are placeholders. The decisions of §13 that belong to other positions are never signed for them. Every installation, change or retirement of a Pod or Cell of the Charter is a change of the Charter, and is signed by the Cell carrying `[ORG]HOAC-GOV` (Standard §1.7, item 13; Protocol §23, item 7), although those parts are accountable to top management; top management's scope covers the parts outside the Charter. This is now Standard §1.7, item 13 and Protocol §4.10, item 11 (`49GAION/DR-0030`, item 4).
 - **Bots.** Each AI Cell's bot (six) has its own identity card, with its own credential, `never_signs: true`, and its memory sealed on a change of filler (Protocol §10, item 3). The credential IDs in `cards/bots/` are placeholders; the credentials live only in the organisation's vault.
 - **Engines.** A bot's identity card names no engine; the gateway binds engines per call. The gateway, the registry, the numbering service, the event store, the queue and the router are code, and none of them is a Cell.
 - **Not Cells of this AIOC:** the internal-audit line and the position that holds data protection (§2.1, §15).
@@ -1072,7 +1062,6 @@ parts:
 | Code | Initials (R15) or rule | §5.1: no `AIOC`, `AION` or `49GAION` | §5.2: no match among the codes checked | §5.3: not a version suffix or misleading acronym | §5.4: recorded before first use |
 |---|---|---|---|---|---|
 | `[ORG]CELL-GOV` | Naming Standard R15, reading note (`49GAION/DR-0030`, item 1): GOV, the Standard's short form of the governing seat | pass | pass | pass | the Library, since `v1.5.0`; the organisation's register before first use |
-| `[ORG]CELL-TMS` | **T**op **M**anagement **S**eat → TMS, the example of R15, item 2 | pass | pass | pass | as above |
 | `[ORG]CELL-COSCH` | R16, item 2: COS and the initials of `[ORG]AIOC-CH` → COSCH | pass | pass | pass | blueprint §17, 19 October 2026; the organisation's register before first use |
 | `[ORG]POD-CG` | **C**harter **G**ateway → CG | pass | pass | pass | as above |
 | `[ORG]CELL-GK` | **G**ateway **K**eeper → GK | pass | pass | pass | as above |
@@ -1085,10 +1074,10 @@ parts:
 | `[ORG]CELL-QW` | **Q**ueue **W**atch → QW | pass | pass | pass | as above |
 
 The codes checked against:
-- the twelve codes above, against each other;
+- the eleven codes above, against each other;
 - the codes of the Source Lifecycle mother `v0.1.2` (`[ORG]CELL-SLL`, `-SLCS`, `-SLIA`, `-SLCR`, `-SLSC`, `-SLGF`, `-SLCA`, `-SLD`; `[ORG]POD-SLIR`, `-SLDP`);
 - the codes of the Operations Event Register mother `v0.1.0` (`[ORG]CELL-OERL`, `-OERCS`, `-OERIC`, `-OERCC`, `-OERC`, `-OERTL`, `-OERFC`, `-OERPB`, `-OERCA`; `[ORG]POD-OERCR`, `-OERLF`, `-OERPF`);
-- the example codes `[ORG]AIOC-CH`, `[ORG]AIOC-OCO`, `[ORG]POD-RV`;
+- the example codes `[ORG]AIOC-CH`, `[ORG]AIOC-OCO`, `[ORG]POD-RV`; and, on 29 October 2026, `[ORG]CELL-TMS`, outside the Charter (`outside_positions`);
 - the AIOC codes named in the 49GAION corpus and the retired codes of the Naming Standard §4.
 
 **UNVERIFIED** against any organisation's unit register, and against the codes of the other mothers of the Library; each organisation checks them in its own.
@@ -1145,4 +1134,4 @@ What `[ORG]AIOC-OCO` sends for each part to be installed under the Charter. A pa
 8. Change or delete a past event or log entry; dispose of anything without its signature.
 9. Install, change or retire anything, the Charter included, without the signature the Standard names.
 
-*Blueprint · `[ORG]AIOC-CH` · Charter · `v0.1.2` · Powered by 49GAION*
+*Blueprint · `[ORG]AIOC-CH` · Charter · `v0.1.3` · Powered by 49GAION*
