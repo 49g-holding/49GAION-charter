@@ -1,6 +1,6 @@
 # Contributing
 
-**49GAION Charter, mother blueprint `v0.1.2` · 29 October 2026.**
+**49GAION Charter, mother blueprint `v0.1.3` · 29 October 2026.**
 
 1. **One change, one pull request.** It is reviewed by a party other than its writer, and merged by the governing seat of 49GAION.
 2. **No organisation's data.** Never write here an organisation's name, host, code, document, value, key, log entry or record (Naming Standard R9).

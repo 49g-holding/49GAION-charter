@@ -2,10 +2,10 @@
 
 | Item | State |
 |---|---|
-| Mother blueprint | `v0.1.2`, draft (29 October 2026): the release of the records since `v0.1.1`, positions only among them (`decisions/DR-0007`). It builds on `v0.1.1`, draft (19 October 2026): the readings of `49GAION/DR-0030` close four exceptions (`decisions/DR-0002`). It builds on `v0.1.0`, the part's first blueprint (`decisions/DR-0001`; `49GAION/DR-0029`) |
+| Mother blueprint | `v0.1.3`, draft (29 October 2026): corrections under `49GAION/DR-0052` (`decisions/DR-0008`). It builds on `v0.1.2`, draft (29 October 2026): the release of the records since `v0.1.1`, positions only among them (`decisions/DR-0007`). It builds on `v0.1.1`, draft (19 October 2026): the readings of `49GAION/DR-0030` close four exceptions (`decisions/DR-0002`). It builds on `v0.1.0`, the part's first blueprint (`decisions/DR-0001`; `49GAION/DR-0029`) |
 | Template | 49GAION AIOC Blueprint Template `v1.6.0` at `acdcbe5` |
 | Library part | 49GAION Charter, part card `v1` (`DRAFT`, `NOT_RUN`); Protocol §23 |
-| Library pin | `v0.1.1` at `246ad1f`; `v0.1.2` is pinned in `49GAION-protocol` `library/README.md` once this text is merged |
+| Library pin | `v0.1.2` at `d44e4fc`; `v0.1.3` is pinned in `49GAION-protocol` `library/README.md` once this text is merged |
 | Fixed test | TEST-CH v1: 58 cases · `NOT_RUN`; the Library's TEST-CHARTER v1 (12 cases) kept as cases 1 to 12 |
 | Unit cards | 11 Pod and Cell cards, generated from blueprint §17; `[ORG]CELL-TMS` has left the Charter for the Top Management Group (`49GAION/DR-0052`). `tools/make_cards.py` against `49GAION-protocol` `spec/schemas` at the pin, 29 October 2026: **0 errors**; `[ORG]CELL-GOV` is read under the reading note to R15 (`49GAION/DR-0030`) |
 | Bot identity cards | 6, one for each AI Cell; none signs; no shared credential; **0 errors** |
@@ -13,5 +13,6 @@
 | Instances | none yet |
 | Readings | `49GAION/DR-0041`, the complete definition of 49GAION: this repository is read with it (`decisions/DR-0003`), released in `v0.1.2` |
 | Readings (2) | `49GAION/DR-0042`, the clarifications of the complete definition (`decisions/DR-0005`); TEST-CH gains cases 52 to 58, every one `NOT_RUN`; released in `v0.1.2` |
+| On `main` since the release | none: `v0.1.3` is the release |
 
 *Powered by 49GAION*

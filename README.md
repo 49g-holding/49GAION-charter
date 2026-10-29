@@ -26,7 +26,7 @@ The one-page summary is at the top of the blueprint.
 
 | Path | What it is |
 |---|---|
-| [`blueprint/CH-BLUEPRINT.md`](blueprint/CH-BLUEPRINT.md) | the mother blueprint, `v0.1.2`, on the 49GAION AIOC template |
+| [`blueprint/CH-BLUEPRINT.md`](blueprint/CH-BLUEPRINT.md) | the mother blueprint, `v0.1.3`, on the 49GAION AIOC template |
 | [`tests/TEST-CH.md`](tests/TEST-CH.md) | the fixed test, TEST-CH v1: 58 cases, every one `NOT_RUN`, with the Library's TEST-CHARTER v1 kept as cases 1 to 12 |
 | [`cards/`](cards/) | the unit cards of its Pods and Cells, and the bot identity cards, generated from blueprint §17 |
 | [`decisions/`](decisions/) | the decision records of this repository |

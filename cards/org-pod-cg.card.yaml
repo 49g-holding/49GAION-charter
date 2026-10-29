@@ -5,11 +5,11 @@ full_name: Charter Gateway
 parent: '[ORG]AIOC-CH'
 accountable_to: '[ORG]CELL-TMS'
 type: Human-led Pod
-card_version: v0.1.2
-version: 0.1.2
+card_version: v0.1.3
+version: 0.1.3
 lineage:
   id: '[ORG]POD-CG'
-  version: 0.1.2
+  version: 0.1.3
   relation: original
 lifecycle_state: designed
 fixed_test:
