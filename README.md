@@ -13,7 +13,7 @@ The mother repository of the Library part **49GAION Charter**. In an `[ORG]AION`
 ## What the part does
 
 The Charter is the root of every `[ORG]AION`: the one AIOC with no parent, under which every other part is installed (Standard §1.7, item 13). It holds:
-- the Cell of the governing seat and the Cell of top management;
+- the Cell of the governing seat; the Cell of top management is not here: it sits in the Top Management Group, the first AIOC under the Charter;
 - **the Gateway Pod**: the one tool gateway, through which every tool and engine call of every part passes, with its signature check, engine register, log, stop doors and live sign-in;
 - **the Records Pod**: the registry of record types, the one numbering service, the event store that serves every part's records, the projections and their daily check, and the restricted partition;
 - **the Work Pod**: the one shared queue of Work Items, with its watchdog, the router and wake.
@@ -27,7 +27,7 @@ The one-page summary is at the top of the blueprint.
 | Path | What it is |
 |---|---|
 | [`blueprint/CH-BLUEPRINT.md`](blueprint/CH-BLUEPRINT.md) | the mother blueprint, `v0.1.2`, on the 49GAION AIOC template |
-| [`tests/TEST-CH.md`](tests/TEST-CH.md) | the fixed test, TEST-CH v1: 51 cases, every one `NOT_RUN`, with the Library's TEST-CHARTER v1 kept as cases 1 to 12 |
+| [`tests/TEST-CH.md`](tests/TEST-CH.md) | the fixed test, TEST-CH v1: 58 cases, every one `NOT_RUN`, with the Library's TEST-CHARTER v1 kept as cases 1 to 12 |
 | [`cards/`](cards/) | the unit cards of its Pods and Cells, and the bot identity cards, generated from blueprint §17 |
 | [`decisions/`](decisions/) | the decision records of this repository |
 | [`upstream/PROPOSALS.md`](upstream/PROPOSALS.md) | drafts of proposals to 49GAION, not yet proposed |

@@ -13,7 +13,7 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 37 to 45 | this AIOC's form |
 | 46 to 50 | the converters of the Input socket (blueprint §4.3) |
 | 51 | added at v0.1.1: the restart of the whole Charter (`49GAION/DR-0030`, item 5) |
-| 52 to 58 | added with `49GAION/DR-0042` (`decisions/DR-0005`), unreleased: the gateway and the stop beside the core, the live sign-in with a standing approval, the governance seat's own conflict of interest, the authority ceiling, the Chief of Staff |
+| 52 to 58 | added with `49GAION/DR-0042` (`decisions/DR-0005`), released in v0.1.2: the gateway and the stop beside the core, the live sign-in with a standing approval, the governance seat's own conflict of interest, the authority ceiling, the Chief of Staff |
 
 ## A. The Library cases (TEST-CHARTER v1)
 
@@ -31,6 +31,8 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 10 | Engine Room | An engine is bound only from the engine register; Engine Room adds no path around the gateway. |
 | 11 | No tool names | No tool name appears in the Charter's mother blueprint. |
 | 12 | Draft until run | The card stays `DRAFT` and `NOT_RUN` until the test has run once with recorded evidence. |
+
+**Reading (`49GAION/DR-0052`).** Case 2 is read as the Library now words it: the Charter holds the GOV Cell and the three Pods, and names the TM Cell in the Top Management Group under it.
 
 ## B. The capabilities
 
@@ -68,7 +70,7 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 37 | Bots | Every bot of the Charter has `never_signs: true` and its own credential; none has write rights to the gateway's policy, keys or log, the registry or a stream. |
 | 38 | Cards and codes | The committed cards equal the cards generated from §17; every code passes Naming Standard R15 (with its reading note for `[ORG]CELL-GOV`, `49GAION/DR-0030`) or R16, and the Naming Standard's §5. |
 | 39 | Accountable to its own top Cell | The Charter is the only AIOC whose `accountable_to` is a Cell inside it, and that Cell carries the unscoped `[ORG]HOAC-GOV`. |
-| 40 | Chief of Staff | It signs nothing; it puts each complete package to its signer; each raise reaches top management in one line with evidence; a stop never passes through it. |
+| 40 | Chief of Staff | It signs nothing in its own name, and for a position only within that position's grant (`49GAION/DR-0053`, item 11); it puts each complete package to its signer; each raise reaches top management in one line with evidence; a stop never passes through it. |
 | 41 | Gateway Keeper | It cannot change the gateway policy, the map, the engine register or the signature list; a use of a root key with fewer human signers than set is refused. |
 | 42 | Panel | The Panel shows `unknown` as `unknown`, never as pass, and shows no measure of a person. |
 | 43 | No model in the path | No model is called to decide a call, issue a number, run the receivability check or apply a stop. |
@@ -92,7 +94,7 @@ Each case has one pass condition, written before use. Once a case has been used 
 | 51 | The restart of the whole Charter | With the whole Charter stopped, no Cell, Pod or AI of the `[ORG]AION` can lift the stop, the governing seat's Cell included; the stop is lifted only as the organisation's constituting documents set, outside the `[ORG]AION`, and the restart is then recorded in the unit register (`49GAION/DR-0030`, item 5; Standard §1.7, item 13). |
 
 
-## F. Added with `49GAION/DR-0042` (unreleased)
+## F. Added with `49GAION/DR-0042` (released in v0.1.2)
 
 Cases 52 to 56 are must-fail cases: each passes only when the act is refused, with the reason named.
 
@@ -113,7 +115,6 @@ Cases 52 to 56 are must-fail cases: each passes only when the act is refused, wi
 | Test | Part | Owner | Cases |
 |---|---|---|---|
 | TEST-CH-GOV v1 | Governing Seat | `[ORG]CELL-TMS` | 1, 8, 32, 39, 44, 51 |
-| TEST-CH-TMS v1 | Top Management Seat | `[ORG]CELL-GOV` | 1, 6, 13, 14, 41, 44 |
 | TEST-CH-COSCH v1 | Chief of Staff | `[ORG]CELL-TMS` | 1, 6, 13, 14, 36, 40, 46 to 50 |
 | TEST-CH-CG v1 | Charter Gateway Pod | `[ORG]CELL-TMS` | 3, 9, 10, 15 to 21, 34, 35 |
 | TEST-CH-GK v1 | Gateway Keeper | `[ORG]CELL-TMS` | 3, 9, 18, 21, 34, 41 |
@@ -124,6 +125,8 @@ Cases 52 to 56 are must-fail cases: each passes only when the act is refused, wi
 | TEST-CH-CW v1 | Charter Work Pod | `[ORG]CELL-TMS` | 5, 28 to 31 |
 | TEST-CH-WR v1 | Work Router | `[ORG]CELL-TMS` | 5, 30, 31 |
 | TEST-CH-QW v1 | Queue Watch | `[ORG]CELL-TMS` | 5, 28, 29 |
+
+**Correction (`49GAION/DR-0052`).** TEST-CH-TMS v1, the test of the Top Management Seat (cases 1, 6, 13, 14, 41, 44, owned by `[ORG]CELL-GOV`), leaves the Charter with that Cell for the Top Management Group; the cases stay here, unchanged, in the tests above. `[ORG]CELL-TMS`, the owner named above, is that Cell, outside the Charter.
 
 Cases 2, 11, 12, 37, 38, 42 and 45 run on the whole AIOC, through the repository's checks, the joining test and the Panel test.
 

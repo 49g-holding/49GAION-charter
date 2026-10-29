@@ -18,6 +18,13 @@ cards/bots/, as generated copies. Then it checks:
     holds the label and has no accountable_to (Standard §1.7, item 13); every Cell's fixed
     test owner is a human Cell and never the Cell itself; every accountable_to names a human
     Cell carrying a HOAC label;
+  - positions outside the Charter (49GAION/DR-0052): the parts block may list, under
+    outside_positions, positions the Charter names but does not hold, each as
+    {code, hoac, sits_in}, e.g. top management, [ORG]CELL-TMS carrying [ORG]HOAC-TM, which
+    sits in the Top Management Group (a name in plain English that takes no code, Naming
+    Standard §3). Each must be a CELL code that no part of the blueprint uses, carry a HOAC
+    label, and say in words where it sits, outside the Charter. An accountable_to or a fixed test owner may name such a position instead of
+    a human Cell of the blueprint; any other code fails. An outside position gets no card;
   - every human Cell carries a HOAC label, and there is at least one;
   - codes: every Pod and Cell code is unique; its suffix after POD- or CELL- equals the
     initials of its full name (Naming Standard R15: words that start with a lower-case letter
@@ -147,6 +154,7 @@ def main(schema_dir):
 
     meta, aioc, parts = blueprint_blocks()
     dflt = parts["defaults"]
+    outside = {o["code"]: o for o in parts.get("outside_positions") or []}  # named, not held; no card
     entries = [("CELL", e) for e in parts["cells"]] + [("POD", e) for e in parts["pods"]]
     units = {}
     for kind, e in entries:
@@ -186,8 +194,8 @@ def main(schema_dir):
             if c.get("top_cell") not in kids:
                 errors.append(f"{k}: top_cell is not a Cell of the Pod")
         owner = c["fixed_test"]["owner"]
-        if owner in units and units[owner].get("filler_kind") != "human":
-            errors.append(f"{k}: fixed test owner {owner} is not a human Cell")
+        if owner not in outside and (owner not in units or units[owner].get("filler_kind") != "human"):
+            errors.append(f"{k}: fixed test owner {owner} is not a human Cell of the blueprint or a declared outside position")
     # every human position is a HOAC position (49GAION/DR-0011, DR-0013)
     humans = [k for k, c in units.items() if c.get("filler_kind") == "human"]
     if not humans:
@@ -212,8 +220,17 @@ def main(schema_dir):
         errors.append("the Charter's label is [ORG]HOAC-GOV, held by its top Cell")
     for k, c in units.items():
         a = c.get("accountable_to")
-        if a and (a not in units or units[a].get("filler_kind") != "human" or not units[a].get("hoac")):
+        if a and a not in outside and (a not in units or units[a].get("filler_kind") != "human" or not units[a].get("hoac")):
             errors.append(f"{k}: accountable_to {a} is not a human Cell carrying a HOAC label (CHAIN-TARGET)")
+    # positions outside the Charter (49GAION/DR-0052): named, never held; each carries a HOAC label
+    for code, o in outside.items():
+        if not re.fullmatch(r"(\[ORG\]|[0-9A-Za-z]+)CELL-[A-Z0-9]{2,8}", code) or code in units:
+            errors.append(f"{code}: an outside position is a Cell code that no part of the blueprint uses")
+        if not re.fullmatch(r"(\[ORG\]|[0-9A-Za-z]+)HOAC-(GOV|TM|ACS)", o.get("hoac") or ""):
+            errors.append(f"{code}: an outside position carries a HOAC label")
+        s = (o.get("sits_in") or "").strip()
+        if not s or AIOC in s or any(u in s for u in units):
+            errors.append(f"{code}: an outside position says in words where it sits, outside the Charter (sits_in)")
     # codes: unique, R15 initials, never a withdrawn code
     codes = [e["code"] for _, e in entries]
     for code in sorted({c for c in codes if codes.count(c) > 1}):
@@ -234,7 +251,7 @@ def main(schema_dir):
             errors.append(f"{e['code']}: unknown code_rule {rule}")
         elif suffix != initials(e["full_name"]):
             errors.append(f"{e['code']}: R15: the suffix {suffix} is not the initials {initials(e['full_name'])} of '{e['full_name']}'")
-    named = set(codes) | {aioc.get(k) for k in ("code", "top_cell", "label_holder", "accountable_to")} | set(aioc.get("inner_units", []))
+    named = set(codes) | set(outside) | {aioc.get(k) for k in ("code", "top_cell", "label_holder", "accountable_to")} | set(aioc.get("inner_units", []))
     for c in units.values():
         named |= {c.get("parent"), c.get("accountable_to"), c.get("top_cell"), c["fixed_test"]["owner"], *c.get("inner_units", [])}
     for code in sorted(x for x in named if x and tail(x) in {tail(w) for w in WITHDRAWN}):
